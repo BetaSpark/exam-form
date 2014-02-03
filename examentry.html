@@ -1,0 +1,119 @@
+<head>
+<title>Exam Entry</title>
+<script language="javascript" type="text/javascript">
+
+
+
+
+function validateForm() {
+
+
+
+var checked = null;
+var inputs = document.getElementsByName('examtype');
+for (var i = 0; i < inputs.length; i++) {
+          if (inputs[i].checked) {
+           checked = inputs[i];
+   }
+}
+if(checked==null)
+{
+    alert('Please choose an exam level.');
+    return false;
+}
+else{
+      confirm('You have chosen '+checked.value+' is this correct?');
+}
+
+
+
+
+var result = true;
+var msg="";
+
+if (document.ExamEntry.name.value=="") {
+msg+="You must enter your name \n";
+document.ExamEntry.name.focus();
+document.getElementById('name').style.color="red";
+result = false;
+}
+
+if (document.ExamEntry.subject.value=="") {
+msg+="You must enter your subject \n";
+document.ExamEntry.subject.focus();
+document.getElementById('subject').style.color="red";
+result = false;
+}
+
+if (document.ExamEntry.examnumber.value=="") {
+msg+="You must enter the examnumber \n";
+document.ExamEntry.examnumber.focus();
+document.getElementById('examnumber').style.color="red";
+result = false;
+}
+
+if (document.ExamEntry.examnumber.value.length!=4) {
+msg+="You must enter at least Four Numbers in the ExamNumber \n";
+document.ExamEntry.examnumber.focus();
+document.getElementById('examnumber').style.color="red";
+result = false;
+} 
+
+
+var numbers = /^[0-9]{4}$/;
+
+
+if (!(document.ExamEntry.examnumber.value.match(numbers))) {
+    msg += "Only use numeric characters for the Examnumber \n";
+    document.ExamEntry.examnumber.focus();
+    document.getElementById('examnumber').style.color = "red";
+    result = false;
+}  
+
+
+
+
+if(msg==""){
+return result;
+}
+{
+alert(msg)
+return result;
+}
+}
+
+
+
+
+</script>
+</head>
+
+
+<body>
+<h1>Exam Entry Form</h1>
+<form name="ExamEntry" method="post" action="success.html">
+<table width="50%" border="0">
+<tr>
+<td id="name">Name</td>
+<td><input type="text" name="name" /></td>
+<tr>
+<td id="subject">Subject</td>
+<td><input type="text" name="subject" /></td>
+</tr>
+<tr>
+<td id="examnumber">Examination Number</td>
+<td><input type="text" name="examnumber" maxlength="4" /></td>
+</tr>
+<tr>
+<td><input type="radio" id="examtype" name="examtype" value="GCSE" /> : GCSE<br />
+<td><input type="radio" id="examtype" name="examtype" value="A2" /> : A2<br />
+<td><input type="radio" id="examtype" name="examtype" value="AS"/> : AS<br />
+</tr>
+<tr>
+<td><input type="submit" name="Submit" value="Submit" onclick="return validateForm();"/>  </td>
+<td><input type="reset" name="Reset" value="Reset" /></td>
+</tr>
+</table>
+</form>
+</body>
+</style>
